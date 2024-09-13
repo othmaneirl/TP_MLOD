@@ -1,0 +1,8 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/othmaneirhboula/mlod-algoc-sujets/TP-01-Echauffement/00-EvenNumbers/main'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _isEven, symObjAddr: 0x0, symBinAddr: 0x100003EB0, symSize: 0x30 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _isEven, symObjAddr: 0x0, symBinAddr: 0x100003EB0, symSize: 0x30 }
+  - { offsetInCU: 0x69, offset: 0x69, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x30, symBinAddr: 0x100003EE0, symSize: 0x9C }
+...
