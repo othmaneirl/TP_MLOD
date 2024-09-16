@@ -71,6 +71,7 @@ int main()
                                         pillar = SDL_CreateTextureFromSurface(renderer, surf);
                                         break;
                                 }
+                                
                         case SDL_MOUSEBUTTONDOWN:
                                 if(gamestate == ALIVE)
                                 {
