@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 enum Mois {Janvier=1, Fevrier, Mars, Avril, Mai, Juin, Juillet, Aout, Septembre, Octobre, Novembre, Decembre};
+char tabMois[12][10] = {"Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"};
 struct Date{
     enum Mois mois;
     int jour, annee;

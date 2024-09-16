@@ -3,13 +3,24 @@
 #include <stdint.h>
 #include "dates.h"
 #include "dates.c"
+
+
 int main(void){
     Date d;
+    printf("initialiseDate:");
     initialiseDate(&d);
     Date b;
+    printf("\ncreercopie:");
     b=creerDateParCopie();
-    printf("date avec initialise date");
+    Date* pdate;
+    printf("\nnewdate:");
+    pdate= newDate();
+
+    printf("\ndate avec initialise date:");
     afficheDate(&d);
-    printf("\ndate avec creercopie");
+    printf("\ndate avec creercopie:");
     afficheDate(&b);
+    printf("\ndate avec newdate:");
+    afficheDate(pdate);
+    free(pdate);
 }

@@ -2,34 +2,40 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "dates.h"
+#include "stdbool.h"
 
 void initialiseDate(Date *date) {
     printf("Entrer le jour : ");
     scanf("%d", &date->jour);
 
-    int mois_entre;
     printf("Entrer le mois (1-12) : ");
-    scanf("%d", &mois_entre);
-    date->mois = (enum Mois)mois_entre;
+    scanf("%d",(int*) &date->mois);
 
     printf("Entrer l'annee : ");
     scanf("%d", &date->annee);
-    
-
 }
+
+
 Date creerDateParCopie(void){
     struct Date d;
     printf("Entrer l'annee : ");
     scanf("%d",&d.annee);
-    int mois_entre;
     printf("Entrer le mois : ");
-    scanf("%d", &mois_entre);
-    d.mois= (enum Mois) mois_entre;
+    scanf("%d", (int*)&d.mois);
     printf("Entrer le jour : ");
     scanf("%d", &d.jour);
     return d;
 }
+
+
+
+Date* newDate(void){
+    Date* date = malloc(sizeof(Date));
+    initialiseDate(date);
+    return date;
+}
+
 void afficheDate(Date *date) {
-    printf("%d/%d/%d\n", date->jour, date->mois, date->annee);
+    printf("Le %d %s %d\n", date->jour, tabMois[date->mois-1], date->annee);
 }
 
