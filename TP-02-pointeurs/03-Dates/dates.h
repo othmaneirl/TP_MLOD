@@ -10,5 +10,7 @@ struct Date{
 };
 typedef struct Date Date;
 
-void initialiseDate(struct Date *date);
-void afficheDate(struct Date *date);
+void initialiseDate(Date *date);
+void afficheDate(Date *date);
+Date creerDateParCopie(void);
+Date* newDate();
