@@ -71,14 +71,6 @@ int main()
                                         pillar = SDL_CreateTextureFromSurface(renderer, surf);
                                         break;
                                 }
-                                if (event.key.keysym.sym == SDLK_b){
-                                         couleurb+=1;
-                                         char filename2[50]; 
-                                         sprintf(filename2, "res/background%d.bmp", couleurb % 2); 
-                                         surf = SDL_LoadBMP(filename2);
-                                         background = SDL_CreateTextureFromSurface(renderer, surf);
-                                         break;
-                                }
                         case SDL_MOUSEBUTTONDOWN:
                                 if(gamestate == ALIVE)
                                 {
