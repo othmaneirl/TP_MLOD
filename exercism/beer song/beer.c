@@ -20,6 +20,7 @@ void recite(uint8_t start_bottles, uint8_t take_down, char **song) {
         }
         printf("%s\n", verse);
         song[i] = verse;
+        free(verse);
         start_bottles--;  
     }
 }
