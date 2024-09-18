@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "prixturing.h": "c",
+        "stdio.h": "c"
     }
 }
