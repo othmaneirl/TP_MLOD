@@ -1,8 +1,9 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     "/Users/othmaneirhboula/TP_MLOD/TP_MLOD/Exercices_Notés/repeat"
+binary-path:     "/Users/othmaneirhboula/TP_MLOD/TP_MLOD/TP_Notés/repeat"
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _repeat, symObjAddr: 0x0, symBinAddr: 0x100003DDC, symSize: 0xF8 }
-  - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _repeat, symObjAddr: 0x0, symBinAddr: 0x100003DDC, symSize: 0xF8 }
-  - { offsetInCU: 0xD7, offset: 0xD7, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0xF8, symBinAddr: 0x100003ED4, symSize: 0x90 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _repeat, symObjAddr: 0x0, symBinAddr: 0x100003BEC, symSize: 0x138 }
+  - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _repeat, symObjAddr: 0x0, symBinAddr: 0x100003BEC, symSize: 0x138 }
+  - { offsetInCU: 0x11D, offset: 0x11D, size: 0x8, addend: 0x0, symName: _print_tableau, symObjAddr: 0x138, symBinAddr: 0x100003D24, symSize: 0xBC }
+  - { offsetInCU: 0x16B, offset: 0x16B, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x1F4, symBinAddr: 0x100003DE0, symSize: 0x128 }
 ...
