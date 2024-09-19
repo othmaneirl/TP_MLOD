@@ -4,15 +4,15 @@
 #include <errno.h>
 #include <assert.h>
 
-struct prixTuring
+typedef struct 
 {
     char nom_prenom[50] ;
-    int annee;
+    char annee[4];
     char domaine[500];
-};
+} prixTuring;
 
 int NumberOfWinners(FILE* f);
-void ReadWinners(FILE* f);
+void ReadWinners(FILE* f, prixTuring* tabTuring, int numWinners);
 
 
 
