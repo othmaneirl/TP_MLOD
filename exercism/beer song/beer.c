@@ -20,7 +20,17 @@ void recite(uint8_t start_bottles, uint8_t take_down, char **song) {
         }
         printf("%s\n", verse);
         song[i] = verse;
-        free(verse);
         start_bottles--;  
     }
+}
+int main() {
+    uint8_t start_bottles = 99;
+    uint8_t take_down = 2;
+    char **song = malloc(take_down * sizeof(char*));
+    recite(start_bottles, take_down, song);
+    for (int i = 0; i < take_down; i++) {
+        free(song[i]);
+    }
+    free(song);
+    return 0;
 }

@@ -6,9 +6,9 @@
 
 typedef struct 
 {
-    char nom_prenom[50] ;
-    char annee[4];
-    char domaine[500];
+    char* nom_prenom ; // se termine par \0
+    int annee;
+    char* domaine; // se termine par \0
 } prixTuring;
 
 int NumberOfWinners(FILE* f);
@@ -16,3 +16,4 @@ void ReadWinners(FILE* f, prixTuring* tabTuring, int numWinners);
 
 
 
+void PrintWinners(FILE* f, prixTuring Gagnant);
