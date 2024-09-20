@@ -37,13 +37,14 @@ void ReadWinners(FILE* f, prixTuring* tabTuring, int numWinners) {
     }
 }
 
-void PrintWinners(FILE* f, prixTuring Gagnant){
-	fprintf(f,"%s;%s;%s\n",Gagnant.annee,Gagnant.nom_prenom,Gagnant.annee);
+void PrintWinners(FILE* output, prixTuring Gagnant){
+	fprintf(output,"%d;%s;%s",Gagnant.annee,Gagnant.nom_prenom,Gagnant.domaine);
 }
 
-int main(int argc, char** argv) {
-    char filename[] = "turingWinners.csv";
-    FILE *f = fopen(filename, "r");
+int main(int argc, char *argv[]) {
+    // char filename[]='turingWinners.csv';
+	
+    FILE *f = fopen(argv[1], "r");
     
     if (f == NULL) {
         perror("Erreur d'ouverture du fichier");
@@ -72,23 +73,23 @@ int main(int argc, char** argv) {
     printf("Le nom du quinzieme laureat est %s\n", tabTuring[14].nom_prenom);
 	printf("En %d\n", tabTuring[14].annee);
 	printf("Le domaine: %s\n", tabTuring[14].domaine);
-	FILE *file = fopen("example.txt", "a");
-	prixTuring nouveauGagnant;
-	nouveauGagnant.annee=2024;
-	nouveauGagnant.nom_prenom = malloc(sizeof(char*)*11);
-	nouveauGagnant.domaine = malloc(sizeof(char*)*67);
-	strcpy(nouveauGagnant.nom_prenom, 'Avi Widgerson');
-	strcpy(nouveauGagnant.domaine, "Pour avoir modifié notre compréhension du rôle du hasard dans l'informatique");
-	PrintWinners(file,nouveauGagnant);
-	free(nouveauGagnant.nom_prenom);
-	free(nouveauGagnant.domaine);
-
-
-
-
-
-
-
+    // char output_file[256];
+    // sprintf(output_file, "%s.csv", argv[2]);
+	FILE *file = fopen(argv[2], "w");
+    // prixTuring nouveauGagnant;
+    // nouveauGagnant.annee=2023;
+    // nouveauGagnant.nom_prenom = malloc(strlen("Avi Widgerson") + 1);
+    // nouveauGagnant.domaine = malloc(strlen("Pour avoir modifié notre compréhension du rôle du hasard dans l'informatique") + 1);
+    // strcpy(nouveauGagnant.nom_prenom, "Avi Widgerson");
+    // strcpy(nouveauGagnant.domaine, "Pour avoir modifié notre compréhension du rôle du hasard dans l'informatique");
+	// PrintWinners(file,nouveauGagnant);
+	// free(nouveauGagnant.nom_prenom);
+	// free(nouveauGagnant.domaine);
+	for (int i=0;i<numWinners;i++){
+		PrintWinners(file,tabTuring[i]);
+	}
+	fclose(file);
+	// close(f);
 
 
     for (int i=0;i< numWinners;i++){

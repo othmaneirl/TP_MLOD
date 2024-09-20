@@ -13,7 +13,4 @@ typedef struct
 
 int NumberOfWinners(FILE* f);
 void ReadWinners(FILE* f, prixTuring* tabTuring, int numWinners);
-
-
-
 void PrintWinners(FILE* f, prixTuring Gagnant);
