@@ -41,10 +41,28 @@ void PrintWinners(FILE* output, prixTuring Gagnant){
 	fprintf(output,"%d;%s;%s",Gagnant.annee,Gagnant.nom_prenom,Gagnant.domaine);
 }
 
+void infoAnnee(int Year, prixTuring* tabTuring,int nbWinners){
+    prixTuring listeAnne[nbWinners];
+    int index = 0;
+    for (int i=0; i<nbWinners;i++){
+        if (tabTuring[i].annee==Year){
+            listeAnne[index]=tabTuring[i];
+            index++;
+        }
+    }
+    printf("durant l'annee %d, le ou les gagnant sont:\n",Year);
+    for (int j=0; j<index;j++){
+        printf("%s dans le domaine %s",listeAnne[j].nom_prenom,listeAnne[j].domaine);
+    }
+}
+
+
 int main(int argc, char *argv[]) {
-    // char filename[]='turingWinners.csv';
-	
-    FILE *f = fopen(argv[1], "r");
+//=================================================
+    // FILE *f = fopen(argv[1], "r");                        décommenter pour pouvoir entrer le nom du fichier input lors de l'exection du .out
+//=================================================
+
+    FILE *f = fopen("turingWinners.csv","r");
     
     if (f == NULL) {
         perror("Erreur d'ouverture du fichier");
@@ -52,45 +70,44 @@ int main(int argc, char *argv[]) {
     }
     
     int numWinners = NumberOfWinners(f);
-    if (numWinners == 0) {
-        printf("Aucun gagnant trouvé\n");
-        fclose(f);
-        return 1;
-    }else{
-		printf("%d gagants\n",numWinners);
-	}
 
+// Pour le nombre de gagnants 
+//=================================================
+    // if (numWinners == 0) {
+    //     printf("Aucun gagnant trouvé\n");
+    //     fclose(f);
+    //     return 1;
+    // }else{
+	// 	printf("%d gagants\n",numWinners);
+	// }
+//=================================================
     prixTuring *tabTuring = malloc(numWinners * sizeof(prixTuring));
     if (tabTuring == NULL) {
         perror("Erreur d'allocation mémoire");
         fclose(f);
         return 1;
     }
-
     ReadWinners(f, tabTuring, numWinners);
     fclose(f);
 
-    printf("Le nom du quinzieme laureat est %s\n", tabTuring[14].nom_prenom);
-	printf("En %d\n", tabTuring[14].annee);
-	printf("Le domaine: %s\n", tabTuring[14].domaine);
-    // char output_file[256];
-    // sprintf(output_file, "%s.csv", argv[2]);
-	FILE *file = fopen(argv[2], "w");
-    // prixTuring nouveauGagnant;
-    // nouveauGagnant.annee=2023;
-    // nouveauGagnant.nom_prenom = malloc(strlen("Avi Widgerson") + 1);
-    // nouveauGagnant.domaine = malloc(strlen("Pour avoir modifié notre compréhension du rôle du hasard dans l'informatique") + 1);
-    // strcpy(nouveauGagnant.nom_prenom, "Avi Widgerson");
-    // strcpy(nouveauGagnant.domaine, "Pour avoir modifié notre compréhension du rôle du hasard dans l'informatique");
-	// PrintWinners(file,nouveauGagnant);
-	// free(nouveauGagnant.nom_prenom);
-	// free(nouveauGagnant.domaine);
-	for (int i=0;i<numWinners;i++){
-		PrintWinners(file,tabTuring[i]);
-	}
-	fclose(file);
-	// close(f);
+// Pour afficher les infos des gagants
+//=================================================
+    // printf("Le nom du quinzieme laureat est %s\n", tabTuring[14].nom_prenom);
+	// printf("En %d\n", tabTuring[14].annee);
+	// printf("Le domaine: %s\n", tabTuring[14].domaine);
+//=================================================
+    int year = atoi(argv[1]);  //conversion du char* argv[1] en int
+    infoAnnee(year,tabTuring,numWinners);  //affiche les infos sur les gagnants de l'année entrée lors de l'execution du .out 
 
+    // pour créer l'output
+//=================================================
+	// FILE *file = fopen(argv[2], "w");
+	// for (int i=0;i<numWinners;i++){
+	// 	PrintWinners(file,tabTuring[i]);
+	// }
+	// fclose(file);
+	// close(f);
+//=================================================
 
     for (int i=0;i< numWinners;i++){
 		free(tabTuring[i].domaine);
