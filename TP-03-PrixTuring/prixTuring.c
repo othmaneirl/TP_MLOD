@@ -56,6 +56,21 @@ void infoAnnee(int Year, prixTuring* tabTuring,int nbWinners){
     }
 }
 
+void sortTuringWinnersByYear(FILE* f, prixTuring* tabTuring, int nbWinners){
+    for (int i = 0; i < nbWinners - 1; i++) {
+        for (int j = 0; j < nbWinners - 1 - i; j++) {
+            if (tabTuring[j].annee > tabTuring[j + 1].annee) {
+                prixTuring temp = tabTuring[j];
+                tabTuring[j] = tabTuring[j + 1];
+                tabTuring[j + 1] = temp;
+            }
+        }
+    } //le tableau est maintenant trié donc on peut l'écrire dans l'output
+	for (int i=0;i<nbWinners;i++){
+		PrintWinners(f,tabTuring[i]);
+	}
+	fclose(f);
+}
 
 int main(int argc, char *argv[]) {
 //=================================================
@@ -89,6 +104,8 @@ int main(int argc, char *argv[]) {
     }
     ReadWinners(f, tabTuring, numWinners);
     fclose(f);
+    FILE *sorted = fopen("sortedTuringWinners.csv","w");
+    sortTuringWinnersByYear(sorted,tabTuring,numWinners);
 
 // Pour afficher les infos des gagants
 //=================================================
@@ -96,8 +113,14 @@ int main(int argc, char *argv[]) {
 	// printf("En %d\n", tabTuring[14].annee);
 	// printf("Le domaine: %s\n", tabTuring[14].domaine);
 //=================================================
-    int year = atoi(argv[1]);  //conversion du char* argv[1] en int
-    infoAnnee(year,tabTuring,numWinners);  //affiche les infos sur les gagnants de l'année entrée lors de l'execution du .out 
+
+// Pour afficher les gagnants de l'année entrée dans le .out
+//=================================================
+    // int year = atoi(argv[1]);  //conversion du char* argv[1] en int
+    // infoAnnee(year,tabTuring,numWinners);  //affiche les infos sur les gagnants de l'année entrée lors de l'execution du .out 
+//=================================================
+
+
 
     // pour créer l'output
 //=================================================
@@ -106,7 +129,6 @@ int main(int argc, char *argv[]) {
 	// 	PrintWinners(file,tabTuring[i]);
 	// }
 	// fclose(file);
-	// close(f);
 //=================================================
 
     for (int i=0;i< numWinners;i++){

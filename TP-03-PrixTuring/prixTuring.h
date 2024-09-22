@@ -15,3 +15,4 @@ int NumberOfWinners(FILE* f);
 void ReadWinners(FILE* f, prixTuring* tabTuring, int numWinners);
 void PrintWinners(FILE* f, prixTuring Gagnant);
 void infoAnnee(int Year, prixTuring* tabTuring,int nbWinners);
+void sortTuringWinnersByYear(FILE* f, prixTuring* tabTuring, int nbWinners);
