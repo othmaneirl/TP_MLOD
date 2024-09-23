@@ -11,12 +11,17 @@ bool estVide(Liste l) {
 
 // créer une liste d'un seul élément contenant la valeur v
 Liste creer(Element v){
-	return TODO;
+	Liste liste = malloc(sizeof(liste));
+	liste->val=v;
+	liste->suiv=NULL;
+	return liste;
 }
 
 // ajoute l'élément v en tete de la liste l
 Liste ajoutTete(Element v, Liste l) {
-	return TODO;
+	l->suiv->val=v;
+	l->suiv->suiv=NULL;
+	return l->suiv;
 }
 
 
@@ -30,31 +35,49 @@ void afficheElement(Element e) {
 // Attention la liste peut être vide !
 // version itérative
 void afficheListe_i(Liste l) {
-	TODO;
+	while(l != NULL){
+		afficheElement(l->val);
+		l = l->suiv;
+	}
 }
 
 // version recursive
 void afficheListe_r(Liste l) {
-	TODO;
+	if (l != NULL) {
+		afficheElement(l->val);
+		afficheListe_r(l->suiv);
+	}
 }
 
-void detruireElement(Element e) {}
+void detruireElement(Element e) {
+}
 
 // Détruit tous les éléments de la liste l
 // version itérative
 void detruire_i(Liste l) {
-	TODO;
+	while(l != NULL){
+		detruireElement(l->val);
+		l = l->suiv;
+	}
 }
 
 // version récursive
 void detruire_r(Liste l) {
-	TODO;
+	if (l != NULL) {
+		detruireElement(l->val);
+		detruire_r(l->suiv);
+	}
 }
 
 // retourne la liste dans laquelle l'élément v a été ajouté en fin
 // version itérative
 Liste ajoutFin_i(Element v, Liste l) {
-	return TODO;
+	Liste liste = malloc(sizeof(l));
+	while(l->suiv!=NULL){
+		liste=l->suiv;
+	}
+	liste->suiv->val=v;
+	return liste;
 }
 
 // version recursive
