@@ -1,4 +1,4 @@
-#include "liste-chainee.h"
+#include "linkedList.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -12,7 +12,8 @@ bool estVide(Liste l) {
 // créer une liste d'un seul élément contenant la valeur v
 Liste creer(Element v){
 	Liste liste = malloc(sizeof(Cellule));
-	liste->val=v;
+	liste->val= malloc(sizeof(Element));
+    liste->val=v;
 	liste->suiv=NULL;
 	return liste;
 }
@@ -24,8 +25,8 @@ Liste ajoutTete(Element v, Liste l) {
     return nouvelleCellule;
 }
 
-void afficheElement(Element e) {
-	printf("%i ",e);
+void afficheElement(Element e) {      //affiche un element de type void*
+    return 0;  // a faire
 }
 
 // affiche tous les éléments de la liste l
@@ -50,7 +51,7 @@ void afficheListe_r(Liste l) {
 }
 
 void detruireElement(Element e) {
-	TODO
+	free(e);
 }
 
 // Détruit tous les éléments de la liste l
@@ -155,7 +156,6 @@ Liste retirePremier_i(Element v, Liste l) {
 }
 
 
-// version recursive
 Liste retirePremier_r(Element v, Liste l) {
     if (l == NULL) return l;
 
@@ -177,8 +177,6 @@ void afficheEnvers_r(Liste l) {
     afficheElement(l->val);
     printf(" ");
 }
-
-
 
 
 

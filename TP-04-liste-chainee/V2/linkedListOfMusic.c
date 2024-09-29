@@ -1,9 +1,60 @@
-#include "liste-chainee.h"
+#include "linkedListOfMusic.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #define TODO NULL;
+void ReadMusic(FILE* f, Element tabMusic, int numMusic) {
+    char buffer[1000];
+    int i = 0;
+    rewind(f);
 
+    while (fgets(buffer, sizeof(buffer), f) != NULL && i < numMusic) {
+        char* token = strtok(buffer, ";");
+        if (token != NULL) {
+            tabMusic[i].name = malloc(strlen(token) + 1);  // +1 pour \0
+            strcpy(tabMusic[i].name, token);
+        }
+        token = strtok(NULL, ";");
+        if (token != NULL) {
+            tabMusic[i].artist = malloc(strlen(token) + 1);  // +1 pour \0
+            strcpy(tabMusic[i].artist, token);
+        }
+        token = strtok(NULL, ";");
+        if (token != NULL) {
+            tabMusic[i].album = malloc(strlen(token) + 1);  // +1 pour \0
+            strcpy(tabMusic[i].album, token);
+        }
+        token = strtok(NULL, ";");
+        if (token != NULL) {
+            tabMusic[i].genre = malloc(strlen(token) + 1);  // +1 pour \0
+            strcpy(tabMusic[i].genre, token);
+        }
+        token = strtok(NULL, ";");
+        if (token != NULL) {
+            tabMusic[i].discNumber = atoi(token);
+        }
+        token = strtok(NULL, ";");
+        if (token != NULL) {
+            tabMusic[i].trackNumber = atoi(token);
+        }
+        token = strtok(NULL, ";");
+        if (token != NULL) {
+            tabMusic[i].year = atoi(token);
+        }
+        i++;
+    }
+}
+void PrintMusic(FILE* output, Element musique){
+    fprintf(output,"%s;%s;%s;%s;%d;%d;%d",musique->name,musique->artist,musique->album,musique->genre,musique->discNumber,musique->trackNumber,musique->year);
+}
+
+void PrintMusics(FILE* output, Liste l){
+    while(l != NULL){
+        PrintMusic(output, l->val);
+        l = l->suiv;
+    }
+}
 // retourne vrai si l est vide et faux sinon
 bool estVide(Liste l) {
 	return l == NULL;
@@ -12,7 +63,7 @@ bool estVide(Liste l) {
 // créer une liste d'un seul élément contenant la valeur v
 Liste creer(Element v){
 	Liste liste = malloc(sizeof(Cellule));
-	liste->val=v;
+    liste->val = v;
 	liste->suiv=NULL;
 	return liste;
 }
@@ -24,8 +75,8 @@ Liste ajoutTete(Element v, Liste l) {
     return nouvelleCellule;
 }
 
-void afficheElement(Element e) {
-	printf("%i ",e);
+void afficheElement(Element e) {      //affiche un element de type void*
+    return 0;  // a faire
 }
 
 // affiche tous les éléments de la liste l
@@ -50,7 +101,11 @@ void afficheListe_r(Liste l) {
 }
 
 void detruireElement(Element e) {
-	TODO
+    free(e->artist);
+    free(e->name);
+    free(e->album);
+    free(e->genre);
+    free(e);
 }
 
 // Détruit tous les éléments de la liste l
@@ -100,7 +155,13 @@ Liste ajoutFin_r(Element v, Liste l) {
 
 // compare deux elements
 bool equalsElement(Element e1, Element e2){
-	return e1 == e2;
+    return ((strcmp(e1->artist, e2->artist) == 0) &&
+            (strcmp(e1->name, e2->name) == 0) &&
+            (strcmp(e1->album, e2->album) == 0) &&
+            (strcmp(e1->genre, e2->genre) == 0) &&
+            (e1->discNumber == e2->discNumber) &&
+            (e1->trackNumber == e2->trackNumber) &&
+            (e1->year == e2->year));
 }
 
 // Retourne un pointeur sur l'élément de la liste l contenant la valeur v ou NULL
@@ -155,7 +216,6 @@ Liste retirePremier_i(Element v, Liste l) {
 }
 
 
-// version recursive
 Liste retirePremier_r(Element v, Liste l) {
     if (l == NULL) return l;
 
@@ -177,8 +237,6 @@ void afficheEnvers_r(Liste l) {
     afficheElement(l->val);
     printf(" ");
 }
-
-
 
 
 

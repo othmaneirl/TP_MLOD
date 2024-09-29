@@ -1,6 +1,6 @@
 // gcc -W -Wall -std=c99 liste-chainee.c liste-chainee-main.c -o liste-chaine-main
 // gcc -W -Wall -Wno-unused-parameter -std=c99 liste-chainee.c liste-chainee-main.c -o liste-chaine-main
-
+// #include "liste-chainee.c"
 #include "liste-chainee.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -29,8 +29,10 @@ int main(void){
 	ajoutFin_r(100,l);
 	afficheListe_i(l);
 
-	p = cherche_i(200,l);
-	printf("cherche_i(200) : %s\n",estVide(p)?"pas trouve":"[ERREUR] trouve !!!");
+	ajoutFin_i(123,l);
+
+	// p = cherche_i(200,l);
+	// printf("cherche_i(200) : %s\n",estVide(p)?"pas trouve":"[ERREUR] trouve !!!");
 
 	p = cherche_i(99,l);
 	if(estVide(p))
