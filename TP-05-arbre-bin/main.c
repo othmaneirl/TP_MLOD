@@ -1,20 +1,25 @@
-// gcc -W -Wall -Wextra -std=c99 arbre-bin-recherche.c arbre-bin-recherche-main.c
+// gcc -W -Wall -Wextra -std=c99 arbre-bin-recherche.c main.c
 
-// gcc -W -Wall -Wextra -std=c99 arbre-bin-recherche-correction.c arbre-bin-recherche-main.c
+// gcc -W -Wall -Wextra -std=c99 arbre-bin-recherche-correction.c main.c
 
 #include "arbre-bin-recherche.h"
+// #include "arbre-bin-recherche.c"
 
 int main(void){
 	ArbreBinaire a; //,p;
 
 	initialiser(&a);
 	// a = NULL;
-	printf("estVide(a)= %s\n",estVide(a)?"TRUE":"FALSE");
-	printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
+	// printf("estVide(a)= %s\n",estVide(a)?"TRUE":"FALSE");
+	// printf("nombreDeNoeud(a)= %i\n",nombreDeNoeud(a));
 
-	a = insere_r(a,5);
-	afficheGRD_r(a);printf("\n");
+	// a = insere_i(a,5);
+	// printf("%d", a->val);
+	
+	// afficheGRD_r(a);printf("\n");
 	a = insere_r(a,3);
+	printf("%d",a->val);
+	return 0;
 	afficheGRD_r(a);printf("\n");
 	a = insere_r(a,2);
 	afficheGRD_r(a);printf("\n");

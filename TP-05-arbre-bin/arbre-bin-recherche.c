@@ -4,33 +4,59 @@
 
 // retourne TRUE si a est l'arbre vide et FALSE sinon
 bool estVide(ArbreBinaire a) {
-	return true;
+	return a==NULL;
 }
 
 // initialise l'arbre a à l'arbre vide
 void initialiser(ArbreBinaire* a) {
+	*a=NULL;
 }
 
 // créer un arbre contenant un seul noeud ayant la valeur e
 ArbreBinaire creer(Element e) {
-
-	return NULL;
+	ArbreBinaire arbre = malloc(sizeof(Noeud));
+	arbre->val = e;
+	arbre->filsGauche = NULL;
+	arbre->filsDroit = NULL;
+	return arbre;
 }
-
-// insere e dans a sachant que a est un arbre binaire de recherche
-// si a contient déjà un element e, ce dernier n'est pas insérer afin d'éviter les doublons
+// insère e dans a sachant que a est un arbre binaire de recherche
+// si a contient déjà un élément e, ce dernier n'est pas inséré afin d'éviter les doublons
 // version itérative
 ArbreBinaire insere_i(ArbreBinaire a, Element e) {
-
-	return NULL;
-}	
-
+	ArbreBinaire parent = NULL;
+	ArbreBinaire actuel = a;
+	while (!estVide(actuel)){
+		parent = actuel;
+		if (actuel->val == e){
+			return a;
+		}else if (actuel->val >= e){
+			actuel = actuel->filsGauche;
+		}else{
+			actuel = actuel->filsDroit;
+		}
+	}
+	if (estVide(parent)){
+		return creer(e);
+	}else if(parent->val>=e){
+		parent->filsGauche = creer(e);
+	}else {
+		parent->filsDroit = creer(e);
+	}
+	return a;
+}
 // insere e dans a sachant que a est un arbre binaire de recherche
 // si a contient déjà un element e, ce dernier n'est pas insérer afin d'éviter les doublons
 // version récursive
 ArbreBinaire insere_r(ArbreBinaire a, Element e) {
-	
-	return NULL;
+	if (estVide(a)){
+		return creer(e);
+	}else if (a->val >= e){
+		a->filsGauche = insere_r(a->filsGauche, e);
+	}else if (a->val < e){
+		a->filsDroit = insere_r(a->filsDroit, e);
+	}
+	return a;
 }
 
 // retourne le nombre de noeud contenus dans l'arbre a
@@ -58,11 +84,21 @@ ArbreBinaire pere(ArbreBinaire a, Element elem){
 	return NULL;
 }
 
-
+void afficheElement(Element e) {      //affiche un element de type void*
+	printf("%d",e);  // a faire
+}
 void afficheRGD_r(ArbreBinaire a){
+	
 }
 
 void afficheGRD_r(ArbreBinaire a){
+	if(!estVide(a)){
+		printf("(");
+		afficheRGD_r(a->filsGauche);
+		afficheElement(a->val);
+		afficheRGD_r(a->filsDroit);
+		printf(")");
+	}
 }
 
 void afficheGDR_r(ArbreBinaire a){

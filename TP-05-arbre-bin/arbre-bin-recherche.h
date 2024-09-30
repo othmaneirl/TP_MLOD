@@ -47,7 +47,7 @@ int hauteur(ArbreBinaire a);
 
 // retourne le pere de elem dans l'arbre a ou NULL s'il n'existe pas
 ArbreBinaire pere(ArbreBinaire a, Element elem);
-
+void afficheElement(Element e);
 void afficheRGD_r(ArbreBinaire a);
 void afficheGRD_r(ArbreBinaire a);
 void afficheGDR_r(ArbreBinaire a);

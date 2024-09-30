@@ -25,8 +25,8 @@ Liste ajoutTete(Element v, Liste l) {
     return nouvelleCellule;
 }
 
-void afficheElement(Element e) {      //affiche un element de type void*
-    return 0;  // a faire
+extern void afficheElement(Element e) {      //affiche un element de type void*
+
 }
 
 // affiche tous les éléments de la liste l
@@ -50,8 +50,7 @@ void afficheListe_r(Liste l) {
 	}
 }
 
-void detruireElement(Element e) {
-	free(e);
+extern void detruireElement(Element e) {
 }
 
 // Détruit tous les éléments de la liste l
@@ -100,8 +99,8 @@ Liste ajoutFin_r(Element v, Liste l) {
 }
 
 // compare deux elements
-bool equalsElement(Element e1, Element e2){
-	return e1 == e2;
+extern bool equalsElement(Element e1, Element e2){
+
 }
 
 // Retourne un pointeur sur l'élément de la liste l contenant la valeur v ou NULL
