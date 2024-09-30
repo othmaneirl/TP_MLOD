@@ -4,51 +4,79 @@
 #include <stdbool.h>
 #include <string.h>
 #define TODO NULL;
-void ReadMusic(FILE* f, Element tabMusic, int numMusic) {
+
+void ReadMusic( FILE *f, Liste l, int numMusic){
     char buffer[1000];
     int i = 0;
     rewind(f);
 
     while (fgets(buffer, sizeof(buffer), f) != NULL && i < numMusic) {
-        char* token = strtok(buffer, ";");
-        if (token != NULL) {
-            tabMusic[i].name = malloc(strlen(token) + 1);  // +1 pour \0
-            strcpy(tabMusic[i].name, token);
+        Element musique = malloc(sizeof(Music));
+        if (musique == NULL) {
+            fprintf(stderr, "Memory allocation error\n");
+            exit(EXIT_FAILURE);
         }
-        token = strtok(NULL, ";");
+
+        char* token = strtok(buffer, ",");
         if (token != NULL) {
-            tabMusic[i].artist = malloc(strlen(token) + 1);  // +1 pour \0
-            strcpy(tabMusic[i].artist, token);
+            musique->name = malloc(strlen(token) + 1);  // +1 pour \0
+            if (musique->name == NULL) {
+                fprintf(stderr, "Memory allocation error\n");
+                exit(EXIT_FAILURE);
+            }
+            strcpy(musique->name, token);
         }
-        token = strtok(NULL, ";");
+        token = strtok(NULL, ",");
         if (token != NULL) {
-            tabMusic[i].album = malloc(strlen(token) + 1);  // +1 pour \0
-            strcpy(tabMusic[i].album, token);
+            musique->artist = malloc(strlen(token) + 1);  // +1 pour \0
+            if (musique->artist == NULL) {
+                fprintf(stderr, "Memory allocation error\n");
+                exit(EXIT_FAILURE);
+            }
+            strcpy(musique->artist, token);
         }
-        token = strtok(NULL, ";");
+        token = strtok(NULL, ",");
         if (token != NULL) {
-            tabMusic[i].genre = malloc(strlen(token) + 1);  // +1 pour \0
-            strcpy(tabMusic[i].genre, token);
+            musique->album = malloc(strlen(token) + 1);  // +1 pour \0
+            if (musique->album == NULL) {
+                fprintf(stderr, "Memory allocation error\n");
+                exit(EXIT_FAILURE);
+            }
+            strcpy(musique->album, token);
         }
-        token = strtok(NULL, ";");
+        token = strtok(NULL, ",");
         if (token != NULL) {
-            tabMusic[i].discNumber = atoi(token);
+            musique->genre = malloc(strlen(token) + 1);  // +1 pour \0
+            if (musique->genre == NULL) {
+                fprintf(stderr, "Memory allocation error\n");
+                exit(EXIT_FAILURE);
+            }
+            strcpy(musique->genre, token);
         }
-        token = strtok(NULL, ";");
+        token = strtok(NULL, ",");
         if (token != NULL) {
-            tabMusic[i].trackNumber = atoi(token);
+            musique->discNumber = atoi(token);
         }
-        token = strtok(NULL, ";");
+        token = strtok(NULL, ",");
         if (token != NULL) {
-            tabMusic[i].year = atoi(token);
+            musique->trackNumber = atoi(token);
         }
+        token = strtok(NULL, ",");
+        if (token != NULL) {
+            musique->year = atoi(token);
+        }
+        l = ajoutFin_i(musique, l);
+        l=l->suiv;
         i++;
     }
 }
-void PrintMusic(FILE* output, Element musique){
-    fprintf(output,"%s;%s;%s;%s;%d;%d;%d",musique->name,musique->artist,musique->album,musique->genre,musique->discNumber,musique->trackNumber,musique->year);
-}
 
+
+void PrintMusic(FILE* output, Element musique){
+    if (musique != NULL){
+    fprintf(output,"%s,%s,%s,%s,%d,%d,%d\n",musique->name,musique->artist,musique->album,musique->genre,musique->discNumber,musique->trackNumber,musique->year);
+}
+}
 void PrintMusics(FILE* output, Liste l){
     while(l != NULL){
         PrintMusic(output, l->val);
@@ -76,7 +104,7 @@ Liste ajoutTete(Element v, Liste l) {
 }
 
 void afficheElement(Element e) {      //affiche un element de type void*
-    return 0;  // a faire
+    printf("%s;%s;%s;%s;%d;%d;%d",e->name,e->artist,e->album,e->genre,e->discNumber,e->trackNumber,e->year);  // a faire
 }
 
 // affiche tous les éléments de la liste l
@@ -173,7 +201,7 @@ Liste cherche_i(Element v,Liste l) {
 		}else{
 			l=l->suiv;
 		}
-	};
+	};return l;
 }
 
 // version récursive

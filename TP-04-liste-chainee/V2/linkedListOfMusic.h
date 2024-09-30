@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdbool.h>
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -26,11 +26,12 @@ typedef struct cellule_s Cellule;
 
 typedef Cellule* Liste;
 // lis un fichier csv contenant des musiques et les stocke dans un tableau de Music
-void ReadMusic(FILE* f, Music* tabMusic, int numMusic);
+void ReadMusic( FILE *f, Liste l, int numMusic);
 
 // écris une musique dans un fichier csv
-void PrintWinners(FILE* output, Element musique);
-
+void PrintMusic(FILE* output, Element musique);
+//écris toutes les musiques d'une liste dans un fichier csv
+void PrintMusics(FILE* output, Liste l);
 // retourne vrai si l est vide et faux sinon
 bool estVide(Liste l);
 
@@ -54,8 +55,8 @@ void afficheListe_r(Liste l);
 
 void detruireElement(Element e);
 
-// Détruit tous les éléments de la liste l
-// version itérative
+// // Détruit tous les éléments de la liste l
+// // version itérative
 void detruire_i(Liste l);
 
 // version récursive
